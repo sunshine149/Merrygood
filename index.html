@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merrygood</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier', monospace;
+            background-color: #000;
+            color: #fff;
+            height: 100%; /* html과 body에 높이 100% 추가 */
+            overflow: hidden; /* 화면에서 스크롤바를 숨김 */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        header {
+            padding: 50px 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+
+        /* 자동차 애니메이션 */
+        .car {
+            font-family: 'Courier', monospace;
+            font-size: 18px;
+            color: white;
+            position: absolute;
+            top: 200px;
+            left: 25%; /* 간격을 좁혀서 25%로 설정 */
+            animation: moveCar 8s ease-out forwards;
+        }
+
+        /* 자동차 애니메이션: 왼쪽에서 오다가 멈추는 효과 */
+        @keyframes moveCar {
+            0% {
+                left: -200px;
+            }
+            50% {
+                left: 25%;
+            }
+            100% {
+                left: 25%; /* 자동차의 위치를 25%로 설정하여 더 가까워짐 */
+            }
+        }
+
+        /* 드론 애니메이션: 오른쪽 상단에서 대각선으로 왼쪽 아래로 떨어지는 효과 */
+        .drone {
+            font-family: 'Courier', monospace;
+            font-size: 18px;
+            color: white;
+            position: absolute;
+            top: -100px;
+            right: 25%; /* 간격을 좁혀서 25%로 설정 */
+            animation: moveDrone 6s ease-out forwards;
+        }
+
+        /* 드론 애니메이션: 오른쪽 상단에서 대각선으로 왼쪽 아래로 떨어지는 효과 */
+        @keyframes moveDrone {
+            0% {
+                top: -100px;
+                right: -100px;
+            }
+            100% {
+                top: 150px;
+                right: 25%;  /* 드론의 위치를 25%로 설정하여 간격을 좁힘 */
+            }
+        }
+
+        footer {
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin-top: auto; /* 푸터를 항상 하단에 위치시키기 위해 사용 */
+        }
+
+        /* 데스크탑 화면에서의 기본 스타일 */
+        @media (min-width: 1025px) {
+            h1 {
+                font-size: 3em;
+            }
+            .car {
+                font-size: 18px;
+                left: 25%; /* 간격을 25%로 좁힘 */
+            }
+            .drone {
+                font-size: 18px;
+                right: 25%; /* 간격을 25%로 좁힘 */
+            }
+        }
+
+        /* 태블릿 화면에서의 스타일 */
+        @media (max-width: 1024px) and (min-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .car {
+                font-size: 16px;
+                left: 15%; /* 간격을 더 좁힘 */
+            }
+            .drone {
+                font-size: 16px;
+                right: 15%; /* 간격을 더 좁힘 */
+            }
+        }
+
+        /* 모바일 화면에서의 스타일 */
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 2em;
+            }
+            .car {
+                font-size: 14px;
+                left: 10%;
+            }
+            .drone {
+                font-size: 14px;
+                right: 10%;
+            }
+        }
+
+        /* 매우 작은 모바일 화면에서의 스타일 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            .car {
+                font-size: 14px;
+                left: 5%;
+            }
+            .drone {
+                font-size: 14px;
+                right: 5%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Merrygood</h1>
+    </header>
+
+    <!-- 자동차 애니메이션 -->
+    <div class="car">
+        <pre>
+      _________
+     /|_||_\`.__
+    (   _    _ _\
+    =`-(_)--(_)-'
+        </pre>
+    </div>
+
+    <!-- 드론 애니메이션 -->
+    <div class="drone">
+        <pre>
+     __|__
+----(_)----
+        </pre>
+    </div>
+
+    <footer>
+        <p>© 2025 Merrygood Co., Ltd. All rights reserved.</p>
+    </footer>
+</body>
+</html>
