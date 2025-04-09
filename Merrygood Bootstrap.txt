@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.122.0" />
+    <title>Product example · Bootstrap v5.3</title>
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/product/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Favicons -->
+    <link
+      rel="apple-touch-icon"
+      href="/docs/5.3/assets/img/favicons/apple-touch-icon.png"
+      sizes="180x180"
+    />
+    <link
+      rel="icon"
+      href="/docs/5.3/assets/img/favicons/favicon-32x32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="/docs/5.3/assets/img/favicons/favicon-16x16.png"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link rel="manifest" href="/docs/5.3/assets/img/favicons/manifest.json" />
+    <link
+      rel="mask-icon"
+      href="/docs/5.3/assets/img/favicons/safari-pinned-tab.svg"
+      color="#712cf9"
+    />
+    <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico" />
+    <meta name="theme-color" content="#712cf9" />
+
+    <!-- Google Fonts 링크 추가 -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: solid rgba(0, 0, 0, 0.15);
+        border-width: 1px 0;
+        box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+          inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -0.125em;
+        fill: currentColor;
+      }
+
+      .position-relative {
+        position: relative;
+      }
+
+      .bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 이미지 비율 유지하며 크기 조정 */
+        z-index: 0; /* 텍스트보다 뒤로 보내기 */
+        opacity: 0.3; /* 이미지 투명도 조정 */
+      }
+
+      .text-container {
+        position: relative; /* 텍스트 컨테이너를 상대 위치로 설정 */
+        z-index: 1; /* 텍스트를 이미지 위에 위치시킴 */
+      }
+
+      .bg-body-tertiary {
+        background: rgba(255, 255, 255, 0.9); /* 배경을 반투명하게 */
+      }
+
+      .main-section {
+        height: 100vh; /* 화면 전체 높이를 설정 */
+        background-image: url("image/main.jpg"); /* 배경 이미지 설정 */
+        background-size: cover; /* 배경 이미지가 전체 요소를 덮도록 설정 */
+        background-position: center center; /* 배경 이미지를 가운데로 정렬 */
+        background-repeat: no-repeat; /* 이미지 반복 방지 */
+        position: absolute; /* 절대 위치 설정 */
+        position: relative; /* 상대 위치로 설정 */
+        z-index: 0; /* 배경 이미지가 다른 콘텐츠보다 뒤로 가도록 설정 */
+        display: flex;
+        align-items: center; /* 수직 중앙 정렬 */
+        justify-content: center; /* 수평 중앙 정렬 */
+      }
+
+      /* nav 설정 */
+      .navbar {
+        position: fixed; /* 내비게이션을 화면 상단에 고정 */
+        width: 100%; /* 화면 전체 너비로 설정 */
+        z-index: 1; /* 다른 콘텐츠보다 위로 올리기 */
+        top: 0; /* 상단에 고정 */
+        left: 0;
+        background-color: rgba(0, 0, 0, 0); /* 배경을 반투명하게 설정 */
+        transition: top 0.3s; /* 스크롤 시 부드러운 애니메이션 */
+        height: 80px; /* 높이를 직접 지정하여 줄이기 */
+      }
+
+      /* 스크롤을 올렸을 때 배경을 흰색으로 변경 */
+      .navbar.scrolled {
+        background-color: white; /* 배경을 흰색으로 변경 */
+      }
+
+      /* 내비게이션 로고 */
+      .navbar-brand {
+        display: flex; /* 로고와 메뉴 버튼을 가로로 배치 */
+        align-items: center; /* 로고 수직 가운데 정렬 */
+        justify-content: flex-start; /* 로고를 왼쪽으로 배치 */
+        margin: 0; /* 왼쪽 마진 제거 */
+        padding: 0; /* 패딩 제거 */
+        position: absolute; /* 절대 위치 지정 */
+        top: 0; /* 화면 상단에 위치 */
+        left: 0; /* 화면 오른쪽에 위치 */
+        z-index: 10; /* 다른 요소들보다 위에 놓이게 하기 */
+      }
+
+      /* 내비게이션 로고 */
+      .navbar-brand img {
+        height: 80px;
+        margin: 0;
+      }
+
+      /* 네비게이션의 크기를 조정하여 고정 위치로 유지 */
+      .custom-nav {
+        padding: 10px 0; /* 여백 조정 */
+      }
+
+      /* main-section이 nav와 겹치지 않도록 추가적인 여백을 주기 */
+      .main-section .text-container {
+        padding-top: 80px; /* nav 크기만큼 여백 추가 */
+      }
+
+      /* 스크롤 시 숨겨지는 효과 */
+      .hide-navbar {
+        top: -118px; /* 네브바를 숨기기 위해 위치를 위로 올림 */
+        transition: top 0.7s ease; /* 부드러운 숨김 애니메이션 */
+      }
+
+      h1 {
+        font-family: "Lora", sans-serif;
+        font-size: 2.5rem;
+        line-height: 1.2;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px); /* 아래로 이동 */
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0); /* 원래 위치로 돌아옴 */
+        }
+      }
+
+      .text-animated {
+        animation: fadeIn 2s ease-out; /* 2초 동안 애니메이션 실행 */
+      }
+
+      /* 햄버거 버튼을 검정 사각형으로 만들기 */
+      .navbar-toggler {
+        background-color: black; /* 검정 배경 */
+        border: none; /* 버튼 테두리 제거 */
+        padding: 10px 20px; /* 버튼 내부 여백을 키워서 크기 확대 */
+        border-radius: 0px; /* 버튼 모서리 둥글게 만들기 */
+        display: flex;
+        align-items: center;
+        justify-content: center; /* "MENU" 텍스트 왼쪽 정렬 */
+        width: 150px; /* 버튼 가로 크기 늘리기 */
+        height: 80px; /* 버튼 세로 크기 */
+        position: absolute; /* 절대 위치 지정 */
+        top: 0; /* 화면 상단에 위치 */
+        right: 0; /* 화면 오른쪽에 위치 */
+        z-index: 10; /* 다른 요소들보다 위에 놓이게 하기 */
+        outline: none !important; /* 클릭 시 테두리 제거 */
+        box-shadow: none !important; /* 클릭 시 그림자 제거 */
+      }
+
+      /* "MENU" 텍스트 스타일 */
+      .menu-text {
+        color: white; /* 흰색 텍스트 */
+        font-size: 18px; /* 텍스트 크기 */
+        margin-left: 20px; /* 텍스트와 아이콘 사이 여백을 넓히기 */
+        font-weight: 500; /* 굵기 500으로 설정 (bold보다는 얇고, normal보다는 굵음) */
+      }
+
+      /* 햄버거 아이콘 영역 */
+      .navbar-toggler-icon {
+        display: flex;
+        flex-direction: column; /* 선들을 세로로 쌓기 */
+        justify-content: space-between; /* 선들 간격 맞추기 */
+        width: 24px; /* 햄버거 아이콘의 너비 */
+        height: 12px; /* 아이콘의 높이 */
+        position: relative; /* 절대 위치 설정 필요 없음 */
+        background: none !important; /* 기존 햄버거거 제거 */
+        align-items: center; /* 세로 중앙 정렬 */
+        transition: none !important; /* 클릭할 때 선 변화 없도록 transition 제거 */
+      }
+
+      /* 각 선 스타일 */
+      .navbar-toggler-icon span {
+        display: block;
+        background-color: white !important; /* 선 색상 */
+        height: 2.5px !important; /* 선 두께 */
+        border-radius: 0px !important; /* 선 끝 둥글게 */
+        margin: 0; /* 선과 선 사이의 간격 0 */
+        box-sizing: border-box; /* 크기 계산 시 padding, border 포함 */
+        transition: none !important; /* 클릭 시 선 두께 변화 없도록 */
+      }
+
+      /* 각 선의 간격 */
+      .navbar-toggler-icon span:nth-child(1),
+      .navbar-toggler-icon span:nth-child(2) {
+        width: 100%; /* 각 선의 너비 */
+      }
+
+      /* 버튼 호버 시 색상 변화 */
+      .navbar-toggler:hover {
+        background-color: #333; /* 어두운 회색 배경으로 변경 */
+      }
+
+      /* offcanvas 메뉴의 배경색을 검정색으로 변경 */
+      .offcanvas {
+        background-color: #000000 !important; /* 검정색 배경 */
+        color: white; /* 텍스트 색을 흰색으로 변경 */
+      }
+
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="product.css" rel="stylesheet" />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol id="check2" viewBox="0 0 16 16">
+        <path
+          d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+        />
+      </symbol>
+      <symbol id="circle-half" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
+      </symbol>
+      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        <path
+          d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"
+        />
+        <path
+          d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"
+        />
+      </symbol>
+      <symbol id="sun-fill" viewBox="0 0 16 16">
+        <path
+          d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+        />
+      </symbol>
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+      <symbol
+        id="aperture"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path
+          d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"
+        />
+      </symbol>
+      <symbol id="cart" viewBox="0 0 16 16">
+        <path
+          d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+        />
+      </symbol>
+      <symbol id="chevron-right" viewBox="0 0 16 16">
+        <path
+          fill-rule="evenodd"
+          d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+        />
+      </symbol>
+    </svg>
+
+    <nav
+      class="navbar navbar-dark custom-nav"
+      aria-label="Dark offcanvas navbar"
+    >
+      <div
+        class="container-fluid d-flex align-items-center"
+        style="height: 100%"
+      >
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <img
+            src="image/logo.png"
+            alt="Merrygood"
+            width="auto"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasNavbarDark"
+          aria-controls="offcanvasNavbarDark"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">
+            <span></span>
+            <span></span>
+          </span>
+          <span class="menu-text">Menu</span>
+          <!-- "MENU" 텍스트 추가 -->
+        </button>
+        <div
+          class="offcanvas offcanvas-end text-bg-dark"
+          tabindex="-1"
+          id="offcanvasNavbarDark"
+          aria-labelledby="offcanvasNavbarDarkLabel"
+        >
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Menu</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">B</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">C</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">D</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-section">
+      <div
+        class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"
+      >
+        <div class="col-md-7 p-lg-5 mx-auto my-5">
+          <h1 class="display-2 fw-bold text-white text-animated">
+            Make a love story with your customers
+          </h1>
+          <div class="d-flex gap-3 justify-content-center lead fw-normal"></div>
+        </div>
+        <div class="product-device shadow-sm d-none d-md-block"></div>
+        <div
+          class="product-device product-device-2 shadow-sm d-none d-md-block"
+        ></div>
+      </div>
+    </main>
+
+    <div class="d-md-flex w-100 my-md-3 ps-md-3">
+      <div
+        class="text-bg-dark flex-grow-1 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+      >
+        <div class="my-3 py-3">
+          <h2 class="display-5">Another headline</h2>
+          <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <div
+          class="bg-body-tertiary shadow-sm mx-auto"
+          style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+        ></div>
+      </div>
+      <div
+        class="bg-body-tertiary flex-grow-1 me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+      >
+        <div class="my-3 p-3">
+          <h2 class="display-5">Another headline</h2>
+          <p class="lead">And an even wittier subheading.</p>
+        </div>
+        <div
+          class="bg-dark shadow-sm mx-auto"
+          style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary"
+    >
+      <img src="image/map.jpg" class="bg-image" alt="Background Image" />
+      <!-- 배경 이미지 추가 -->
+      <div style="position: relative">
+        <div class="col-md-6 p-lg-5 mx-auto my-5">
+          <h1 class="display-4 fw-bold">The world in his arms</h1>
+          <h3 class="fw-normal text-muted mb-3">
+            Hyperconnectivity and Diversity
+          </h3>
+          <div class="d-flex gap-3 justify-content-center lead fw-normal">
+            <a class="icon-link" href="#">
+              Learn more
+              <svg class="bi"><use xlink:href="#chevron-right" /></svg>
+            </a>
+            <a class="icon-link" href="#">
+              Buy
+              <svg class="bi"><use xlink:href="#chevron-right" /></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="product-device shadow-sm d-none d-md-block"></div>
+      <div
+        class="product-device product-device-2 shadow-sm d-none d-md-block"
+      ></div>
+    </div>
+
+    <footer class="py-5">
+      <div class="row">
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a></li>
+          </ul>
+        </div>
+  
+        <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+            <h5>Subscribe to our newsletter</h5>
+            <p>Monthly digest of what's new and exciting from us.</p>
+            <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+              <label for="newsletter1" class="visually-hidden">Email address</label>
+              <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+              <button class="btn btn-primary" type="button">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+      <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <p>&copy; 2025 Company, Inc. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+          <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+        </ul>
+      </div>
+    </footer>
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let lastScrollTop = 0; // 마지막 스크롤 위치
+      const navbar = document.querySelector(".navbar"); // 내비게이션 바 선택
+
+      window.addEventListener("scroll", function () {
+        let currentScroll =
+          window.pageYOffset || document.documentElement.scrollTop; // 현재 스크롤 위치
+
+        // 스크롤을 내리면 네브바 숨기기
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+          navbar.classList.add("hide-navbar");
+          navbar.classList.remove("scrolled"); // 배경을 투명으로 유지
+        } else if (currentScroll < lastScrollTop && currentScroll > 50) {
+          // 스크롤을 올리면 네브바 보이기 + 배경을 흰색으로 변경
+          navbar.classList.remove("hide-navbar");
+          navbar.classList.add("scrolled");
+        } else if (currentScroll <= 50) {
+          // 스크롤이 50px 이하로 내려갔을 때는 배경을 투명으로 유지
+          navbar.classList.remove("scrolled");
+        }
+
+        // 스크롤 위치를 갱신
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      });
+      
+    </script>
+  </body>
+</html>
